@@ -4,6 +4,7 @@ using System.Text;
 using System.Timers;
 using Renci.SshNet;
 using Renci.SshNet.Common;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ssh
 {
@@ -38,7 +39,29 @@ namespace ssh
                 Thread.Sleep(5000);
                 var reader = new StreamReader(stream);
 
-                Console.WriteLine(reader.ReadLine());
+
+                List<string> lines = new List<string>();
+
+
+                string line;
+                int read_init = 0;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains("Found")) { read_init = 1; }
+
+                    if (read_init==1)
+                    {
+                        string content = reader.ReadToEnd();
+                        string trimmed = content.Substring(0, content.LastIndexOf("\r\n"));
+                        Console.WriteLine(trimmed);
+                        break;
+                    }
+                }
+
+
+
+
+                
                 client.Disconnect();
             }
 
