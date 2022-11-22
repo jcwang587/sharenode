@@ -58,10 +58,6 @@ namespace ssh
                     }
                 }
 
-
-
-
-                
                 client.Disconnect();
             }
 
