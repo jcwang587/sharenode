@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Sharprompt" Version="2.4.5" />
     <PackageReference Include="SSH.NET" Version="2020.0.2" />
   </ItemGroup>
 
