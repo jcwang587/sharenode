@@ -20,7 +20,7 @@ namespace ssh
             while (Console.Read() != 'q') ;
         }
 
-        static void Sshandls(object source, ElapsedEventArgs e)
+        static void Sshandls(object? source, ElapsedEventArgs e)
         {
             // Set connect information
             ConnectionInfo conInfo = new("baigroup.duckdns.org", 22, "jiachengwang", new AuthenticationMethod[]
