@@ -4,7 +4,6 @@ using System.Text;
 using System.Timers;
 using Renci.SshNet;
 using Renci.SshNet.Common;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ssh
 {
@@ -12,7 +11,8 @@ namespace ssh
     {
         public static void Main()
         {
-            System.Timers.Timer aTimer = new System.Timers.Timer();
+            // Set up a timer
+            System.Timers.Timer aTimer = new();
             aTimer.Elapsed += new ElapsedEventHandler(Sshandls);
             aTimer.Interval = 5000;
             aTimer.Enabled = true;
@@ -31,19 +31,20 @@ namespace ssh
 
             using (SshClient client = new(conInfo))
             {
+                // Connect to server
                 client.Connect();
+
+                // Create a shell stream for output
                 StringBuilder output = new();
                 ShellStream stream = client.CreateShellStream("stream", 0, 0, 0, 0, 587);
+
+                // Run command shotgun list-jobs
                 stream.WriteLine("shotgun list-jobs");
                 stream.Flush();
                 Thread.Sleep(5000);
                 var reader = new StreamReader(stream);
 
-
-                List<string> lines = new List<string>();
-
-
-                string line;
+                string? line;
                 int read_init = 0;
                 while ((line = reader.ReadLine()) != null)
                 {
@@ -52,15 +53,15 @@ namespace ssh
                     if (read_init==1)
                     {
                         string content = reader.ReadToEnd();
-                        string trimmed = content.Substring(0, content.LastIndexOf("\r\n"));
+                        string trimmed = content[..content.LastIndexOf("\r\n")];
                         Console.WriteLine(trimmed);
                         break;
                     }
                 }
-
                 client.Disconnect();
             }
 
+            // Condition if the job is done
             if (File.Exists("B:\\projects\\85_Metad_LLTO\\05_LLTO_U1_0K_H001_W005_BIN250\\DONE"))
             {
                 Console.WriteLine("The job is done " + DateTime.Now.ToShortTimeString().ToString());
@@ -71,6 +72,8 @@ namespace ssh
                 Console.WriteLine(ouput.Result.ToString());
                 client.Disconnect();
             }
+
+            // Condition if the job is on going
             else
             {
                 Console.WriteLine("The job is running " + DateTime.Now.ToShortTimeString().ToString());
@@ -78,6 +81,5 @@ namespace ssh
         }
     }
 }
-
 
 
