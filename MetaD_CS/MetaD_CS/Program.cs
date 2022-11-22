@@ -26,7 +26,7 @@ namespace ssh
             aTimer.Interval = 5000;
             aTimer.Enabled = true;
 
-            Console.WriteLine("Press \'q\' to quit the sample.");
+            Console.WriteLine("Press \'q & Enter\' to quit.");
             while (Console.Read() != 'q') ;
         }
 
