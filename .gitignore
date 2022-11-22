@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MetaD_CS/.vs/MetaD_CS
+/MetaD_CS/MetaD_CS/bin/Debug/net7.0
+/MetaD_CS/MetaD_CS/obj
