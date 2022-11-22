@@ -4,6 +4,7 @@ using System.Text;
 using System.Timers;
 using Renci.SshNet;
 using Renci.SshNet.Common;
+using Sharprompt;
 
 namespace ssh
 {
@@ -11,6 +12,14 @@ namespace ssh
     {
         public static void Main()
         {
+            // Prefer UTF-8 as the output encoding
+            Console.OutputEncoding = Encoding.UTF8;
+
+            var name = Prompt.Input<string>("What's your name?");
+            Console.WriteLine($"Hello, {name}!");
+            var secret = Prompt.Password("Type new password");
+            Console.WriteLine("Password OK");
+
             // Set up a timer
             System.Timers.Timer aTimer = new();
             aTimer.Elapsed += new ElapsedEventHandler(Sshandls);
