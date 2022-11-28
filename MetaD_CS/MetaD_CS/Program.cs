@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
 using Renci.SshNet;
@@ -19,6 +20,10 @@ namespace ssh
             Console.WriteLine($"Hello, {name}!");
             var secret = Prompt.Password("Type new password");
             Console.WriteLine("Password OK");
+
+            // Function list
+            var function = Prompt.Select("Select function", new[] { "Seattle", "London", "Tokyo" });
+            Console.WriteLine($"Function {function} is selected");
 
             // Set up a timer
             System.Timers.Timer aTimer = new();
