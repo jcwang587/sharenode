@@ -27,8 +27,9 @@ namespace ssh
             Console.WriteLine("Password OK");
 
             // Function list
-            var function = Prompt.Select("Select function", new[] { "Seattle", "London", "Tokyo" });
-            Console.WriteLine($"Function {function} is selected");
+            FunctionList();
+
+
 
             // Set up a timer
             System.Timers.Timer aTimer = new();
@@ -38,6 +39,13 @@ namespace ssh
 
             Console.WriteLine("Press \'q & Enter\' to quit.");
             while (Console.Read() != 'q') ;
+        }
+
+        static void FunctionList()
+        {
+            var function = Prompt.Select("Select function", new[] { "Seattle", "London", "Tokyo", "Quit"});
+            Console.WriteLine($"Function {function} is selected");
+            if (function == "Quit") { FunctionList(); }
         }
 
         static void ConnectGroup(string username, string password)
