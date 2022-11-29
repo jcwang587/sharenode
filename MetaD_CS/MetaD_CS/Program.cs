@@ -6,6 +6,8 @@ using System.Timers;
 using Renci.SshNet;
 using Renci.SshNet.Common;
 using Sharprompt;
+using Figgle;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ssh
 {
@@ -15,6 +17,9 @@ namespace ssh
         {
             // Prefer UTF-8 as the output encoding
             Console.OutputEncoding = Encoding.UTF8;
+
+            // ASCII banner
+            Console.WriteLine(FiggleFonts.Standard.Render("SemiAuto Shotgun"));
 
             var name = Prompt.Input<string>("What's your name?");
             Console.WriteLine($"Hello, {name}!");
@@ -34,6 +39,16 @@ namespace ssh
             Console.WriteLine("Press \'q & Enter\' to quit.");
             while (Console.Read() != 'q') ;
         }
+
+        static void ConnectGroup(string username, string password)
+        {
+            // Set connect information
+            ConnectionInfo conInfo = new("baigroup.duckdns.org", 22, username, new AuthenticationMethod[]
+            {
+               new PasswordAuthenticationMethod(username, password)
+            });
+        }
+
 
         static void Sshandls(object? source, ElapsedEventArgs e)
         {
