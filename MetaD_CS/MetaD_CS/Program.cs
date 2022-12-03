@@ -30,22 +30,26 @@ namespace ssh
             FunctionList();
 
 
+            Console.WriteLine("Press \'q & Enter\' to quit.");
+            while (Console.Read() != 'q') ;
+        }
 
+        static void ContinuousSubmit()
+        {
             // Set up a timer
             System.Timers.Timer aTimer = new();
             aTimer.Elapsed += new ElapsedEventHandler(Sshandls);
             aTimer.Interval = 5000;
             aTimer.Enabled = true;
-
-            Console.WriteLine("Press \'q & Enter\' to quit.");
-            while (Console.Read() != 'q') ;
         }
+
 
         static void FunctionList()
         {
-            var function = Prompt.Select("Select function", new[] { "Seattle", "London", "Tokyo", "Quit"});
+            var function = Prompt.Select("Select function", new[] { "Continuous Submit", "Seattle", "London", "Tokyo", "Quit"});
             Console.WriteLine($"Function {function} is selected");
             if (function == "Quit") { FunctionList(); }
+            else if (function == "Continuous Submit") { ContinuousSubmit(); }
         }
 
         static void ConnectGroup(string username, string password)
@@ -70,6 +74,7 @@ namespace ssh
             {
                 // Connect to server
                 client.Connect();
+                Console.WriteLine("Connected to baigroup");
 
                 // Create a shell stream for output
                 StringBuilder output = new();
@@ -98,23 +103,23 @@ namespace ssh
                 client.Disconnect();
             }
 
-            // Condition if the job is done
-            if (File.Exists("B:\\projects\\85_Metad_LLTO\\05_LLTO_U1_0K_H001_W005_BIN250\\DONE"))
-            {
-                Console.WriteLine("The job is done " + DateTime.Now.ToShortTimeString().ToString());
+            //// Condition if the job is done
+            //if (File.Exists("B:\\projects\\85_Metad_LLTO\\05_LLTO_U1_0K_H001_W005_BIN250\\DONE"))
+            //{
+            //    Console.WriteLine("The job is done " + DateTime.Now.ToShortTimeString().ToString());
 
-                using SshClient client = new(conInfo);
-                client.Connect();
-                var ouput = client.RunCommand("cd /home/jiachengwang/projects/85_Metad_LLTO/05_LLTO_U1_0K_H001_W005_BIN250; ls");
-                Console.WriteLine(ouput.Result.ToString());
-                client.Disconnect();
-            }
+            //    using SshClient client = new(conInfo);
+            //    client.Connect();
+            //    var ouput = client.RunCommand("cd /home/jiachengwang/projects/85_Metad_LLTO/05_LLTO_U1_0K_H001_W005_BIN250; ls");
+            //    Console.WriteLine(ouput.Result.ToString());
+            //    client.Disconnect();
+            //}
 
-            // Condition if the job is on going
-            else
-            {
-                Console.WriteLine("The job is running " + DateTime.Now.ToShortTimeString().ToString());
-            }
+            //// Condition if the job is on going
+            //else
+            //{
+            //    Console.WriteLine("The job is running " + DateTime.Now.ToShortTimeString().ToString());
+            //}
         }
     }
 }
