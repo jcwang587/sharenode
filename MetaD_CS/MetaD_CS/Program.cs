@@ -30,8 +30,16 @@ namespace ssh
             FunctionList();
 
 
-            Console.WriteLine("Press \'q & Enter\' to quit.");
-            while (Console.Read() != 'q') ;
+            // Console.WriteLine("Press \'q & Enter\' to quit.");
+            // while (Console.Read() != 'q') ;
+        }
+
+        static void FunctionList()
+        {
+            var function = Prompt.Select("Select function", new[] { "Continuous Submit", "Seattle", "London", "Tokyo", "Quit"});
+            Console.WriteLine($"Function {function} is selected");
+            if (function == "Quit") { FunctionList(); }
+            else if (function == "Continuous Submit") { ContinuousSubmit(); }
         }
 
         static void ContinuousSubmit()
@@ -41,15 +49,6 @@ namespace ssh
             aTimer.Elapsed += new ElapsedEventHandler(Sshandls);
             aTimer.Interval = 5000;
             aTimer.Enabled = true;
-        }
-
-
-        static void FunctionList()
-        {
-            var function = Prompt.Select("Select function", new[] { "Continuous Submit", "Seattle", "London", "Tokyo", "Quit"});
-            Console.WriteLine($"Function {function} is selected");
-            if (function == "Quit") { FunctionList(); }
-            else if (function == "Continuous Submit") { ContinuousSubmit(); }
         }
 
         static void ConnectGroup(string username, string password)
