@@ -38,8 +38,9 @@ namespace ssh
         {
             var function = Prompt.Select("Select function", new[] { "Continuous Submit", "Seattle", "London", "Tokyo", "Quit"});
             Console.WriteLine($"Function {function} is selected");
+
             if (function == "Quit") { FunctionList(); }
-            else if (function == "Seattle") { ContinuousSubmit(); }
+            if (function == "Seattle") { ContinuousSubmit(); }
         }
 
         static void ContinuousSubmit()
