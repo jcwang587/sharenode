@@ -19,7 +19,7 @@ namespace ssh
             Console.OutputEncoding = Encoding.UTF8;
 
             // ASCII banner
-            Console.WriteLine(FiggleFonts.Standard.Render("SemiAuto Shotgun"));
+            Console.WriteLine(FiggleFonts.Standard.Render("VASP C-Sharp"));
 
             var name = Prompt.Input<string>("What's your name?");
             Console.WriteLine($"Hello, {name}!");
@@ -39,7 +39,7 @@ namespace ssh
             var function = Prompt.Select("Select function", new[] { "Continuous Submit", "Seattle", "London", "Tokyo", "Quit"});
             Console.WriteLine($"Function {function} is selected");
             if (function == "Quit") { FunctionList(); }
-            else if (function == "Continuous Submit") { ContinuousSubmit(); }
+            else if (function == "Seattle") { ContinuousSubmit(); }
         }
 
         static void ContinuousSubmit()
