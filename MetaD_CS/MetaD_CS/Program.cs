@@ -13,6 +13,18 @@ namespace ssh
 {
     class Program
     {
+        public static class Common 
+        {
+            private static string name = "jiachengwang";
+
+            public static string Name
+            {
+                get { return name; }
+                set { name = value; }
+            }
+        }
+
+
         public static void Main()
         {
             // Prefer UTF-8 as the output encoding
@@ -27,19 +39,19 @@ namespace ssh
             Console.WriteLine("Password OK");
 
             // Function list
-            FunctionList();
+            FunctionList(name);
 
 
             Console.WriteLine("Press \'q & Enter\' to quit.");
             while (Console.Read() != 'q') ;
         }
 
-        static void FunctionList()
+        static void FunctionList(string name)
         {
             var function = Prompt.Select("Select function", new[] { "Continuous Submit", "Seattle", "London", "Tokyo", "Quit"});
             Console.WriteLine($"Function {function} is selected");
 
-            if (function == "Quit") { FunctionList(); }
+            if (function == "Quit") { FunctionList(name); }
             if (function == "Seattle") { ContinuousSubmit(); }
         }
 
@@ -65,9 +77,9 @@ namespace ssh
         static void Sshandls(object? source, ElapsedEventArgs e)
         {
             // Set connect information
-            ConnectionInfo conInfo = new("baigroup.duckdns.org", 22, "jiachengwang", new AuthenticationMethod[]
+            ConnectionInfo conInfo = new("baigroup.duckdns.org", 22, Common.Name, new AuthenticationMethod[]
             {
-               new PasswordAuthenticationMethod("jiachengwang", "wjc19950910")
+               new PasswordAuthenticationMethod(Common.Name, "wjc19950910")
             });
 
             using SshClient client = new(conInfo);
