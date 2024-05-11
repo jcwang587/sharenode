@@ -3,8 +3,6 @@
 ################################################################################
 
 /.vs
-/sharenode/.vs
-/sharenode/sharenode/bin/Debug/net7.0
-/sharenode/sharenode/obj/Debug/net7.0
-/sharenode/sharenode/obj/Release/net7.0
-/sharenode/sharenode/obj
+/src/.vs
+/src/sharenode/bin/
+/src/sharenode/obj
