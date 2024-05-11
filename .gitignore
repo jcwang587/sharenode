@@ -3,7 +3,8 @@
 ################################################################################
 
 /.vs
-/MetaD_CS/.vs/MetaD_CS
-/MetaD_CS/MetaD_CS/obj
-/MetaD_CS/.vs/ProjectEvaluation
-/MetaD_CS/MetaD_CS/bin/Debug/net7.0
+/sharenode/.vs
+/sharenode/sharenode/bin/Debug/net7.0
+/sharenode/sharenode/obj/Debug/net7.0
+/sharenode/sharenode/obj/Release/net7.0
+/sharenode/sharenode/obj
