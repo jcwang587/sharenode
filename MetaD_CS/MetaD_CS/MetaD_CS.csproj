@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Figgle" Version="0.5.1" />
     <PackageReference Include="Sharprompt" Version="2.4.5" />
-    <PackageReference Include="SSH.NET" Version="2020.0.2" />
+    <PackageReference Include="SSH.NET" Version="2024.0.0" />
   </ItemGroup>
 
 </Project>
