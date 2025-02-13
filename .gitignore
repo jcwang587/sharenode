@@ -1,8 +1,2 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/.vs
-/src/.vs
-/src/sharenode/bin/
-/src/sharenode/obj
+﻿*/bin
+*/obj
